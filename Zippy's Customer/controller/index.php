@@ -13,10 +13,6 @@
     }
 
   if ($action == 'show_inventory') {
-        // call function to populate dropdowns
-        $makes = get_makes();
-        $types = get_types();
-        $classes = get_classes();
         //pull data for variables
         if(isset($_GET['make_id'])){
         $make_id = $_GET['make_id'];}
@@ -27,6 +23,12 @@
         //get sort variables
         if(isset($_GET['sort'])){
         $sort = $_GET['sort'];};
+        // call function to populate dropdowns
+        $makes = get_makes();
+        $types = get_types();
+        $classes = get_classes();
+        //no criteria message
+        $message = no_search();
         //call functions to populate inventory table
         $avehicles = display_all();
         $mvehicles = get_inventory_by_make();

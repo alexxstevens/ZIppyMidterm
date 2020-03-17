@@ -12,6 +12,17 @@
         return $makes;
     }
 
+    function no_search() {
+        global $db;
+        global $type_id;
+        global $make_id;
+        global $class_id; 
+         if (!isset($type_id, $make_id, $class_id)) {
+            $message = "Please select search criteria to view inventory.";
+            return $message;}
+    }
+
+
     //display all
     function display_all() { 
         global $db;
@@ -19,7 +30,7 @@
         global $make_id;
         global $class_id;
         global $sort;
-        if ($type_id == FALSE || $make_id == FALSE || $class_id == FALSE) {
+        if ($type_id == "0" || $make_id == "0" || $class_id == "0") {
             // sort inventory if selected
                 if ($sort = 'price') {
                     $query = 'SELECT 

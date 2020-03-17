@@ -48,8 +48,9 @@
 </section>
 
 <section>
-                <div><h3><?php global $message; echo $message; ?></h3></div>
+                <div><h3><?php global $messsage; echo $message; ?></h3></div>
                 <div id="table-overflow">
+                 <?php if (!isset($message)) { ?>
                     <table>
                         <thead>
                             <tr>
@@ -72,6 +73,14 @@
                               <td><?php echo $avehicle['price']; ?></td>
                               <td><?php echo $avehicle['type_name']; ?></td>
                               <td><?php echo $avehicle['class_name']; ?></td>
+                              <td>
+                                    <form action="." method="post">
+                                        <input type="hidden" name="action" value="delete_item">
+                                        <input type="hidden" name="product_id"
+                                            value="<?php echo $avehicle['product_id']; ?>">
+                                        <input type="submit" value="Remove" class="button red">
+                                    </form>
+                              </td>
                             </tr>
                           <?php endforeach;} ?>
 
@@ -84,6 +93,14 @@
                               <td><?php echo $mvehicle['price']; ?></td>
                               <td><?php echo $mvehicle['type_name']; ?></td>
                               <td><?php echo $mvehicle['class_name']; ?></td>
+                              <td>
+                                    <form action="." method="post">
+                                        <input type="hidden" name="action" value="delete_item">
+                                        <input type="hidden" name="product_id"
+                                            value="<?php echo $mvehicle['product_id']; ?>">
+                                        <input type="submit" value="Remove" class="button red">
+                                    </form>
+                              </td>                              
                             </tr>
                           <?php endforeach;} ?>
                             
@@ -96,6 +113,14 @@
                               <td><?php echo $tvehicle['price']; ?></td>
                               <td><?php echo $tvehicle['type_name']; ?></td>
                               <td><?php echo $tvehicle['class_name']; ?></td>
+                              <td>
+                                    <form action="." method="post">
+                                        <input type="hidden" name="action" value="delete_item">
+                                        <input type="hidden" name="product_id"
+                                            value="<?php echo $tvehicle['product_id']; ?>">
+                                        <input type="submit" value="Remove" class="button red">
+                                    </form>
+                              </td>                              
                             </tr>
                           <?php endforeach;} ?>
 
@@ -108,12 +133,24 @@
                               <td><?php echo $cvehicle['price']; ?></td>
                               <td><?php echo $cvehicle['type_name']; ?></td>
                               <td><?php echo $cvehicle['class_name']; ?></td>
+                              <td>
+                                    <form action="." method="post">
+                                        <input type="hidden" name="action" value="delete_item">
+                                        <input type="hidden" name="product_id"
+                                            value="<?php echo $cvehicle['product_id']; ?>">
+                                        <input type="submit" value="Remove" class="button red">
+                                    </form>
+                              </td>
                             </tr>
-                          <?php endforeach;} ?>
-                                          
+                          <?php endforeach;} ?>                             
                         </tbody>
                     </table>
+                    <?php }?>
                 </div>
+                <div id="links">
+                <p><a href="?action=show_add_form">Click here</a> to add a new vehicles to the inventory.</p>  
+                <p><a href="index.php?action=list_types">View/Edit vehicle types</a></p>
+                <p><a href="index.php?action=list_classes">View/Edit vehicle classes</a></p>
                  
                                   
         </section>
