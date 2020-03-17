@@ -27,6 +27,12 @@
                 LEFT JOIN types T ON V.type_code = T.type_code 
                 LEFT JOIN classes C ON V.class_code = C.class_code 
                 WHERE V.class_code = :class_code ORDER BY V.price'; 
+                $statement = $db->prepare($query);
+                $statement->bindValue(':class_code', $class_id);
+                $statement->execute();
+                $cvehicles = $statement->fetchAll();
+                $statement->closeCursor();
+                return $cvehicles;
             } else if ($sort == 'year') {
                 $query = 'SELECT 
                 V.year
@@ -38,12 +44,30 @@
                 FROM vehicles V 
                 LEFT JOIN types T ON V.type_code = T.type_code 
                 LEFT JOIN classes C ON V.class_code = C.class_code 
-                WHERE V.class_code = :class_code ORDER BY V.year'; }
+                WHERE V.class_code = :class_code ORDER BY V.year'; 
                 $statement = $db->prepare($query);
                 $statement->bindValue(':class_code', $class_id);
                 $statement->execute();
                 $cvehicles = $statement->fetchAll();
                 $statement->closeCursor();
                 return $cvehicles;
-            }
+            } else {
+                $query = 'SELECT 
+                V.year
+                , V.make
+                , V.model
+                , V.price 
+                ,T.type_name
+                ,C.class_name
+                FROM vehicles V 
+                LEFT JOIN types T ON V.type_code = T.type_code 
+                LEFT JOIN classes C ON V.class_code = C.class_code 
+                WHERE V.class_code = :class_code'; 
+                $statement = $db->prepare($query);
+                $statement->bindValue(':class_code', $class_id);
+                $statement->execute();
+                $cvehicles = $statement->fetchAll();
+                $statement->closeCursor();
+                return $cvehicles;
+            }}
        ?>

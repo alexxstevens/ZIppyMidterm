@@ -26,8 +26,14 @@
                 FROM vehicles V 
                 LEFT JOIN types T ON V.type_code = T.type_code 
                 LEFT JOIN classes C ON V.class_code = C.class_code 
-                WHERE V.type_code = :type_code ORDER BY V.price'; }
-            else if ($sort == 'year') {
+                WHERE V.type_code = :type_code ORDER BY V.price'; 
+                $statement = $db->prepare($query);
+                $statement->bindValue(':type_code', $type_id);
+                $statement->execute();
+                $tvehicles = $statement->fetchAll();
+                $statement->closeCursor();
+                return $tvehicles; 
+            } else if ($sort == 'year') {
                 $query = 'SELECT 
                 V.year
                 , V.make
@@ -38,13 +44,31 @@
                 FROM vehicles V 
                 LEFT JOIN types T ON V.type_code = T.type_code 
                 LEFT JOIN classes C ON V.class_code = C.class_code 
-                WHERE V.type_code = :type_code ORDER BY V.year';}
-            $statement = $db->prepare($query);
-            $statement->bindValue(':type_code', $type_id);
-            $statement->execute();
-            $tvehicles = $statement->fetchAll();
-            $statement->closeCursor();
-            return $tvehicles; 
-         }
+                WHERE V.type_code = :type_code ORDER BY V.year';
+                $statement = $db->prepare($query);
+                $statement->bindValue(':type_code', $type_id);
+                $statement->execute();
+                $tvehicles = $statement->fetchAll();
+                $statement->closeCursor(); 
+                return $tvehicles; 
+            } else {
+                $query = 'SELECT 
+                V.year
+                , V.make
+                , V.model
+                , V.price 
+                ,T.type_name
+                ,C.class_name
+                FROM vehicles V 
+                LEFT JOIN types T ON V.type_code = T.type_code 
+                LEFT JOIN classes C ON V.class_code = C.class_code 
+                WHERE V.type_code = :type_code';
+                $statement = $db->prepare($query);
+                $statement->bindValue(':type_code', $type_id);
+                $statement->execute();
+                $tvehicles = $statement->fetchAll();
+                $statement->closeCursor(); 
+                return $tvehicles; }
+    }
         
        ?>
