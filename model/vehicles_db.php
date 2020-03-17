@@ -12,50 +12,14 @@
         return $makes;
     }
 
-    //display inventory
-    function get_inventory_by_make() {
+    //display all
+    function display_all() { 
         global $db;
-        global $make;
         global $type_id;
         global $make_id;
         global $class_id;
-        global $price_sort;
-        global $year_sort;
-        if ($type_id == FALSE && $make_id == FALSE && $class_id == FALSE && $price_sort == TRUE) {
-            $query = 
-            'SELECT 
-            V.year
-            , V.make
-            , V.model
-            , V.price 
-            ,T.type_name
-            ,C.class_name
-            FROM vehicles V 
-            LEFT JOIN types T ON V.type_code = T.type_code 
-            LEFT JOIN classes C ON V.class_code = C.class_code ORDER BY V.price';
-            $statement = $db->prepare($query);
-            $statement->execute();
-            $mvehicles = $statement->fetchAll();
-            $statement->closeCursor();
-            return $mvehicles; 
-        } else if ($type_id == FALSE && $make_id == FALSE && $class_id == FALSE && $year_sort == FALSE) {
-            $query = 
-            'SELECT 
-            V.year
-            , V.make
-            , V.model
-            , V.price 
-            ,T.type_name
-            ,C.class_name
-            FROM vehicles V 
-            LEFT JOIN types T ON V.type_code = T.type_code 
-            LEFT JOIN classes C ON V.class_code = C.class_code ORDER BY V.year';
-            $statement = $db->prepare($query);
-            $statement->execute();
-            $mvehicles = $statement->fetchAll();
-            $statement->closeCursor();
-            return $mvehicles; 
-        } else if ($type_id == FALSE && $make_id == FALSE && $class_id == FALSE) {
+        global $sort;
+        if ($type_id == FALSE || $make_id == FALSE || $class_id == FALSE) {
             $query = 
             'SELECT 
             V.year
@@ -67,12 +31,40 @@
             FROM vehicles V 
             LEFT JOIN types T ON V.type_code = T.type_code 
             LEFT JOIN classes C ON V.class_code = C.class_code';
+            // sort inventory if selected
+                if ($sort = 'price') {
+                    $query = 'SELECT 
+                    V.year
+                    , V.make
+                    , V.model
+                    , V.price 
+                    ,T.type_name
+                    ,C.class_name
+                    FROM vehicles V 
+                    LEFT JOIN types T ON V.type_code = T.type_code 
+                    LEFT JOIN classes C ON V.class_code = C.class_code ORDER BY V.price';
+                } else if ($sort = 'year') {
+                    $query = 'SELECT 
+                    V.year
+                    , V.make
+                    , V.model
+                    , V.price 
+                    ,T.type_name
+                    ,C.class_name
+                    FROM vehicles V 
+                    LEFT JOIN types T ON V.type_code = T.type_code 
+                    LEFT JOIN classes C ON V.class_code = C.class_code ORDER BY V.year'; }}
             $statement = $db->prepare($query);
             $statement->execute();
-            $mvehicles = $statement->fetchAll();
+            $avehicles = $statement->fetchAll();
             $statement->closeCursor();
-            return $mvehicles; 
-        } else {
+            return $avehicles; }
+        
+    //display inventory by make
+    function get_inventory_by_make() {
+        global $db;
+        global $make_id;
+        global $sort;
             $query = 'SELECT 
             V.year
             , V.make
@@ -84,13 +76,35 @@
             LEFT JOIN types T ON V.type_code = T.type_code 
             LEFT JOIN classes C ON V.class_code = C.class_code 
             WHERE V.make = :make_id';
+                if ($sort = 'price') {
+                    $query = 'SELECT 
+                    V.year
+                    , V.make
+                    , V.model
+                    , V.price 
+                    ,T.type_name
+                    ,C.class_name
+                    FROM vehicles V 
+                    LEFT JOIN types T ON V.type_code = T.type_code 
+                    LEFT JOIN classes C ON V.class_code = C.class_code 
+                    WHERE V.make = :make_id ORDER BY V.price';}
+                if ($sort = 'year') {
+                    $query = 'SELECT 
+                    V.year
+                    , V.make
+                    , V.model
+                    , V.price 
+                    ,T.type_name
+                    ,C.class_name
+                    FROM vehicles V 
+                    LEFT JOIN types T ON V.type_code = T.type_code 
+                    LEFT JOIN classes C ON V.class_code = C.class_code 
+                    WHERE V.make = :make_id ORDER BY V.year';}
             $statement = $db->prepare($query);
             $statement->bindValue(':make_id', $make_id);
             $statement->execute();
             $mvehicles = $statement->fetchAll();
             $statement->closeCursor();
-            return $mvehicles; 
-        }
-        }
-    
-       ?>
+            return $mvehicles; }
+
+?>

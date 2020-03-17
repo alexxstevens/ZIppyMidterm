@@ -14,9 +14,8 @@
    function get_inventory_by_class() {
         global $db;
         global $class_id;
-        global $price_sort;
-        global $year_sort;
-            if ($price_sort == TRUE) {
+        global $sort;
+            if ($sort == 'price') {
                 $query = 'SELECT 
                 V.year
                 , V.make
@@ -28,13 +27,7 @@
                 LEFT JOIN types T ON V.type_code = T.type_code 
                 LEFT JOIN classes C ON V.class_code = C.class_code 
                 WHERE V.class_code = :class_code ORDER BY V.price'; 
-                $statement = $db->prepare($query);
-                $statement->bindValue(':class_code', $class_id);
-                $statement->execute();
-                $cvehicles = $statement->fetchAll();
-                $statement->closeCursor();
-                return $cvehicles;
-            } else if ($year_sort == FALSE) {
+            } else if ($sort == 'year') {
                 $query = 'SELECT 
                 V.year
                 , V.make
@@ -45,12 +38,12 @@
                 FROM vehicles V 
                 LEFT JOIN types T ON V.type_code = T.type_code 
                 LEFT JOIN classes C ON V.class_code = C.class_code 
-                WHERE V.class_code = :class_code ORDER BY V.year'; 
+                WHERE V.class_code = :class_code ORDER BY V.year'; }
                 $statement = $db->prepare($query);
                 $statement->bindValue(':class_code', $class_id);
                 $statement->execute();
                 $cvehicles = $statement->fetchAll();
                 $statement->closeCursor();
                 return $cvehicles;
-            }}
+            }
        ?>

@@ -25,15 +25,14 @@
         if(isset($_GET['class_id'])){
         $class_id = $_GET['class_id'];}
         //call functions to populate inventory table
+        $avehicles = display_all();
         $mvehicles = get_inventory_by_make();
         $tvehicles = get_inventory_by_type();
         $cvehicles = get_inventory_by_class(); 
         include_once('../view/inventory_list.php'); 
-        //sort inventory
-        if(isset($_GET['price_sort'])){
-        $price_sort = $_GET['price_sort'];}
-        if(isset($_GET['year_sort'])){
-        $year_sort = $_GET['year_sort'];} 
+        //get sort variables
+        if(isset($_GET['sort'])){
+        $sort = $_GET['sort'];};
         
   }
         ?>

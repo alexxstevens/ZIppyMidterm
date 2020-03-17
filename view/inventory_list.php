@@ -14,7 +14,7 @@
           <option value="0">View All Makes</option>
         </select>
       </div>
-
+      
       <div id="type_dropdown">
         <select name="type_id" class="custom-select my-1 mr-sm-2">
           <option value="" selected>View a Type of Vehicle</option>
@@ -39,17 +39,16 @@
 
       <div id="sort_by">
         <p>Sort Inventory By:  
-        <label class="radio-inline"><input type="radio" name="price_sort" value="true">  Price</label>
-        <label class="radio-inline"><input type="radio" name="year_sort" value="false">  Year</label></p>
+        <label class="radio-inline"><input type="radio" name="sort" value="price">  Price</label>
+        <label class="radio-inline"><input type="radio" name="sort" value="year">  Year</label></p>
       </div>
-
-      <input class="btn btn-primary" type="submit" value="Submit">
+    <input class="btn btn-primary" type="submit" value="Submit">
     </form>
   </div>
 </section>
 
 <section>
-       
+                <div><h3><?php global $message; echo $message; ?></h3></div>
                 <div id="table-overflow">
                     <table>
                         <thead>
@@ -63,6 +62,19 @@
                             </tr>
                         </thead>
                         <tbody>
+
+                         <?php if (isset($avehicles)) { 
+                                foreach ($avehicles as $avehicle) : ?>
+                            <tr>
+                              <td><?php echo $avehicle['year']; ?></td>
+                              <td><?php echo $avehicle['make']; ?></td>
+                              <td><?php echo $avehicle['model']; ?></td>
+                              <td><?php echo $avehicle['price']; ?></td>
+                              <td><?php echo $avehicle['type_name']; ?></td>
+                              <td><?php echo $avehicle['class_name']; ?></td>
+                            </tr>
+                          <?php endforeach;} ?>
+
                           <?php if (isset($mvehicles)) { 
                                 foreach ($mvehicles as $mvehicle) : ?>
                             <tr>
