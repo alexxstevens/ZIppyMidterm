@@ -36,21 +36,24 @@
           <option value="0">View All Classes</option>
         </select>
       </div>
-
-      <div id="sort_by">
-        <p>Sort Inventory By:  
-        <label class="radio-inline"><input type="radio" name="sort" value="price">  Price</label>
-        <label class="radio-inline"><input type="radio" name="sort" value="year">  Year</label></p>
-      </div>
-    <input class="btn btn-primary" type="submit" value="Submit">
+      <br>
+        <div id="sort_by">
+          <p>Sort Inventory By:  
+          <label class="radio-inline"><input type="radio" name="sort" value="price">  Price</label>
+          <label class="radio-inline"><input type="radio" name="sort" value="year">  Year</label></p>
+        </div>
+        <div id="submit">
+          <input class="btn btn-primary " type="submit" value="Submit">
+        </div>
     </form>
   </div>
 </section>
-
+            <br>
+            <h3><?php global $message; echo $message;?></h3>
+            <br>
 <section>
-                <div><h3><?php global $messsage; echo $message; ?></h3></div>
+              <?php if (empty($message)) {?>
                 <div id="table-overflow">
-                <?php if (!isset($message)) { ?>
                     <table>
                         <thead>
                             <tr> 
@@ -60,6 +63,7 @@
                                 <th>Price</th>
                                 <th>Type</th>
                                 <th>Class</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -114,8 +118,8 @@
                                           
                         </tbody>
                     </table>
-                                <?php }?>
                 </div>
+                                <?php }?>
                  
                                   
         </section>

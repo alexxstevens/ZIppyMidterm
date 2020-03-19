@@ -17,7 +17,7 @@
         global $type_id;
         global $make_id;
         global $class_id; 
-         if (!isset($type_id, $make_id, $class_id)) {
+        if ($type_id=="" && $make_id == "" && $class_id == "") {
             $message = "Please select search criteria to view inventory.";
             return $message;}
     }
@@ -31,9 +31,10 @@
         global $sort;
         if ($type_id == "0" || $make_id == "0" || $class_id == "0") {
             // sort inventory if selected
-                if ($sort = 'price') {
+                if ($sort == 'price') {
                     $query = 'SELECT 
-                    V.year
+                    V.product_id 
+                    , V.year
                     , V.make
                     , V.model
                     , V.price 
@@ -47,9 +48,10 @@
                     $avehicles = $statement->fetchAll();
                     $statement->closeCursor();
                     return $avehicles;
-                } else if ($sort = 'year') {
+                } else if ($sort == 'year') {
                     $query = 'SELECT 
-                    V.year
+                    V.product_id 
+                    , V.year
                     , V.make
                     , V.model
                     , V.price 
@@ -65,7 +67,8 @@
                     return $avehicles; 
                 } else { $query = 
                     'SELECT 
-                    V.year
+                    V.product_id 
+                    , V.year
                     , V.make
                     , V.model
                     , V.price 
@@ -73,7 +76,7 @@
                     ,C.class_name
                     FROM vehicles V 
                     LEFT JOIN types T ON V.type_code = T.type_code 
-                    LEFT JOIN classes C ON V.class_code = C.class_code';
+                    LEFT JOIN classes C ON V.class_code = C.class_code ORDER BY V.product_id';
                     $statement = $db->prepare($query);
                     $statement->execute();
                     $avehicles = $statement->fetchAll();
@@ -85,9 +88,10 @@
         global $db;
         global $make_id;
         global $sort;
-                if ($sort = 'price') {
+                if ($sort == 'price') {
                     $query = 'SELECT 
-                    V.year
+                    V.product_id 
+                    , V.year
                     , V.make
                     , V.model
                     , V.price 
@@ -103,9 +107,10 @@
                     $mvehicles = $statement->fetchAll();
                     $statement->closeCursor();
                     return $mvehicles;
-                } else if ($sort = 'year') {
+                } else if ($sort == 'year') {
                     $query = 'SELECT 
-                    V.year
+                    V.product_id 
+                    , V.year
                     , V.make
                     , V.model
                     , V.price 
@@ -122,8 +127,9 @@
                     $statement->closeCursor();
                     return $mvehicles;
                 } else  {
-                    $query = 'SELECT 
-                    V.year
+                    $query = 'SELECT
+                    V.product_id 
+                    , V.year
                     , V.make
                     , V.model
                     , V.price 
@@ -132,12 +138,21 @@
                     FROM vehicles V 
                     LEFT JOIN types T ON V.type_code = T.type_code 
                     LEFT JOIN classes C ON V.class_code = C.class_code 
-                    WHERE V.make = :make_id';
+                    WHERE V.make = :make_id ORDER BY V.product_id';
                     $statement = $db->prepare($query);
                     $statement->bindValue(':make_id', $make_id);
                     $statement->execute();
                     $mvehicles = $statement->fetchAll();
                     $statement->closeCursor();
                     return $mvehicles;}}
+
+ function delete_vehicle($product_id) {
+        global $db;
+        $query = 'DELETE FROM vehicles WHERE product_id = :product_id';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':product_id', $product_id);
+        $statement->execute();
+        $statement->closeCursor();
+    }
 
 ?>

@@ -1,7 +1,8 @@
 <?php include 'header.php'; ?>
-
+<br>
 <div id="class_list">
-    <h2>Vehicle Classes</h2>
+    <h2 class="add">Vehicle Classes</h2>
+     <div class="list">
         <table>
             <tr>
                 <th colspan="2">Class Name</th>
@@ -10,7 +11,7 @@
             <tr>
                 <td><?php echo $class['class_name']; ?></td>
                 <td>
-                    <form action="." method="post">
+                    <form action="." method="get">
                         <input type="hidden" name="action" value="delete_class">
                         <input type="hidden" name="class_code"
                             value="<?php echo $class['class_code']; ?>"/>
@@ -21,20 +22,22 @@
             <?php endforeach; ?>    
         </table>
 </div>
-<div id="add_class">
-        <h2>Add Vehicle Class</h2>
-        <form action="." method="post" id="add_class_form">
+<br><br>
+        <h2 class="add">Add Vehicle Class</h2>
+         <div class="list">
+        <form action="." method="get" id="add_class_form">
             <input type="hidden" name="action" value="add_class">
 
-            <label>Class Name:</label>
+            <label class="list">Class Name:</label>
             <input type="text" name="class_name" max="20" required><br>
 
-            <label>&nbsp;</label>
+            <br>
             <input id="add_type_button" type="submit" class="button blue" value="Add Vehicle Class"><br>
         </form>
 </div>
-<div id="links">
-        <p><a href="index.php">View Inventory</a></p>
+<div>
+    <br>
+        <p class="add"><a href="index.php?action=show_inventory">Click Here to View Inventory</a></p>
+    <br>
 </div>
-
 <?php include 'footer.php'; ?>

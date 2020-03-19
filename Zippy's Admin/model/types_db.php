@@ -17,7 +17,8 @@
         global $sort;
             if ($sort == 'price') {
                 $query = 'SELECT 
-                V.year
+                V.product_id 
+                , V.year
                 , V.make
                 , V.model
                 , V.price 
@@ -35,7 +36,8 @@
                 return $tvehicles; 
             } else if ($sort == 'year') {
                 $query = 'SELECT 
-                V.year
+                V.product_id 
+                , V.year
                 , V.make
                 , V.model
                 , V.price 
@@ -53,7 +55,8 @@
                 return $tvehicles; 
             } else {
                 $query = 'SELECT 
-                V.year
+                V.product_id 
+                , V.year
                 , V.make
                 , V.model
                 , V.price 
@@ -62,7 +65,7 @@
                 FROM vehicles V 
                 LEFT JOIN types T ON V.type_code = T.type_code 
                 LEFT JOIN classes C ON V.class_code = C.class_code 
-                WHERE V.type_code = :type_code';
+                WHERE V.type_code = :type_code ORDER BY V.product_id';
                 $statement = $db->prepare($query);
                 $statement->bindValue(':type_code', $type_id);
                 $statement->execute();
@@ -70,5 +73,27 @@
                 $statement->closeCursor(); 
                 return $tvehicles; }
     }
+
+    //delete type
+    function delete_type($type_code) {
+        global $db;
+        $query = 'DELETE FROM types WHERE type_code = :type_code';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':type_code', $type_code);
+        $statement->execute();
+        $statement->closeCursor();
+    }
+
+    //add type
+    function add_type($type_name) {
+        global $db;
+        $query = 'INSERT INTO types (type_name)
+              VALUES
+                 (:type_name)';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':type_name', $type_name);
+        $statement->execute();
+        $statement->closeCursor();
+    }
         
-       ?>
+?>
