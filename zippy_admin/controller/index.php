@@ -62,7 +62,8 @@
                 include('../errors/error.php');
             } else {
                 delete_type($type_code);
-                header("Location: .?action=class_list.php"); }
+                $types = get_types();
+                include('../view/type_list.php');}
         //delete vehicle class           
     } else if ($action == 'delete_class') {
             $class_code = $_GET['class_code'];
@@ -71,7 +72,8 @@
                 include('../errors/error.php');
             } else {
                 delete_class($class_code);
-                header("Location: .?action=list_types");}
+                $classes = get_classes();
+                include('../view/class_list.php');}
         //call add form
     } else if ($action == 'show_add_form') {
             $types = get_types();

@@ -1,4 +1,4 @@
-<?php include 'header.php';     ?>
+<?php include 'header.php';?>
    
 <br>
 <section id="dropdowns">
@@ -49,8 +49,8 @@
   </div>
 </section>
             <br>
-            <h3><?php global $message; echo $message;?></h3>
-            <br>
+            <h3 id="no_search"><?php global $message; echo $message;?></h3>
+            
 <section>
               <?php if (empty($message)) {?>
                 <div id="table-overflow">
@@ -63,7 +63,6 @@
                                 <th>Price</th>
                                 <th>Type</th>
                                 <th>Class</th>
-                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -71,48 +70,48 @@
                          <?php if (isset($avehicles)) { 
                                 foreach ($avehicles as $avehicle) : ?>
                             <tr>
-                              <td><?php echo $avehicle['year']; ?></td>
-                              <td><?php echo $avehicle['make']; ?></td>
-                              <td><?php echo $avehicle['model']; ?></td>
-                              <td><?php echo $avehicle['price']; ?></td>
-                              <td><?php echo $avehicle['type_name']; ?></td>
-                              <td><?php echo $avehicle['class_name']; ?></td>
+                              <td class="mainc"><?php echo $avehicle['year']; ?></td>
+                              <td class="mainc"><?php echo $avehicle['make']; ?></td>
+                              <td class="mainc"><?php echo $avehicle['model']; ?></td>
+                              <td class="mainc"><?php echo $avehicle['price']; ?></td>
+                              <td class="mainc"><?php echo $avehicle['type_name']; ?></td>
+                              <td class="mainc"><?php echo $avehicle['class_name']; ?></td>
                             </tr>
                           <?php endforeach;} ?>
 
                           <?php if (isset($mvehicles)) { 
                                 foreach ($mvehicles as $mvehicle) : ?>
                             <tr>
-                              <td><?php echo $mvehicle['year']; ?></td>
-                              <td><?php echo $mvehicle['make']; ?></td>
-                              <td><?php echo $mvehicle['model']; ?></td>
-                              <td><?php echo $mvehicle['price']; ?></td>
-                              <td><?php echo $mvehicle['type_name']; ?></td>
-                              <td><?php echo $mvehicle['class_name']; ?></td>
+                              <td class="mainc"><?php echo $mvehicle['year']; ?></td>
+                              <td class="mainc"><?php echo $mvehicle['make']; ?></td>
+                              <td class="mainc"><?php echo $mvehicle['model']; ?></td>
+                              <td class="mainc"><?php echo $mvehicle['price']; ?></td>
+                              <td class="mainc"><?php echo $mvehicle['type_name']; ?></td>
+                              <td class="mainc"><?php echo $mvehicle['class_name']; ?></td>
                             </tr>
                           <?php endforeach;} ?>
                             
                           <?php if (!isset($mvehicle)) { 
                                 foreach ($tvehicles as $tvehicle) : ?>
                             <tr>
-                              <td><?php echo $tvehicle['year']; ?></td>
-                              <td><?php echo $tvehicle['make']; ?></td>
-                              <td><?php echo $tvehicle['model']; ?></td>
-                              <td><?php echo $tvehicle['price']; ?></td>
-                              <td><?php echo $tvehicle['type_name']; ?></td>
-                              <td><?php echo $tvehicle['class_name']; ?></td>
+                              <td class="mainc"><?php echo $tvehicle['year']; ?></td>
+                              <td class="mainc"><?php echo $tvehicle['make']; ?></td>
+                              <td class="mainc"><?php echo $tvehicle['model']; ?></td>
+                              <td class="mainc"><?php echo $tvehicle['price']; ?></td>
+                              <td class="mainc"><?php echo $tvehicle['type_name']; ?></td>
+                              <td class="mainc"><?php echo $tvehicle['class_name']; ?></td>
                             </tr>
                           <?php endforeach;} ?>
 
                             <?php if (!isset($mvehicle, $tvehicle)) { 
                                 foreach ($cvehicles as $cvehicle) : ?>
                             <tr>
-                              <td><?php echo $cvehicle['year']; ?></td>
-                              <td><?php echo $cvehicle['make']; ?></td>
-                              <td><?php echo $cvehicle['model']; ?></td>
-                              <td><?php echo $cvehicle['price']; ?></td>
-                              <td><?php echo $cvehicle['type_name']; ?></td>
-                              <td><?php echo $cvehicle['class_name']; ?></td>
+                              <td class="mainc"><?php echo $cvehicle['year']; ?></td>
+                              <td class="mainc"><?php echo $cvehicle['make']; ?></td>
+                              <td class="mainc"><?php echo $cvehicle['model']; ?></td>
+                              <td class="mainc"><?php echo $cvehicle['price']; ?></td>
+                              <td class="mainc"><?php echo $cvehicle['type_name']; ?></td>
+                              <td class="mainc"><?php echo $cvehicle['class_name']; ?></td>
                             </tr>
                           <?php endforeach;} ?>
                                           

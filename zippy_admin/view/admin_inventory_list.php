@@ -37,7 +37,6 @@
         </select>
       </div>
       <br>
-
         <div id="sort_by">
           <p>Sort Inventory By:  
           <label class="radio-inline"><input type="radio" name="sort" value="price">  Price</label>
@@ -76,13 +75,13 @@
                                 foreach ($avehicles as $avehicle) : ?>
                             <tr>
                               <td class="product_id_hidden"><?php echo $avehicle['product_id']; ?></td>
-                              <td><?php echo $avehicle['year']; ?></td>
-                              <td><?php echo $avehicle['make']; ?></td>
-                              <td><?php echo $avehicle['model']; ?></td>
-                              <td><?php echo $avehicle['price']; ?></td>
-                              <td><?php echo $avehicle['type_name']; ?></td>
-                              <td><?php echo $avehicle['class_name']; ?></td>
-                              <td>
+                              <td class="main"><?php echo $avehicle['year']; ?></td>
+                              <td class="main"><?php echo $avehicle['make']; ?></td>
+                              <td class="main"><?php echo $avehicle['model']; ?></td>
+                              <td class="main"><?php echo $avehicle['price']; ?></td>
+                              <td class="main"><?php echo $avehicle['type_name']; ?></td>
+                              <td class="main"><?php echo $avehicle['class_name']; ?></td>
+                              <td class="main">
                                     <form action="." method="get">
                                         <input type="hidden" name="action" value="delete_vehicle">
                                         <input type="hidden" name="product_id"
@@ -97,13 +96,13 @@
                                 foreach ($mvehicles as $mvehicle) : ?>
                             <tr>
                               <td class="product_id_hidden"><?php echo $mvehicle['product_id'];?></td>                            
-                              <td><?php echo $mvehicle['year']; ?></td>
-                              <td><?php echo $mvehicle['make']; ?></td>
-                              <td><?php echo $mvehicle['model']; ?></td>
-                              <td><?php echo $mvehicle['price']; ?></td>
-                              <td><?php echo $mvehicle['type_name']; ?></td>
-                              <td><?php echo $mvehicle['class_name']; ?></td>
-                              <td>
+                              <td class="main"><?php echo $mvehicle['year']; ?></td>
+                              <td class="main"><?php echo $mvehicle['make']; ?></td>
+                              <td class="main"><?php echo $mvehicle['model']; ?></td>
+                              <td class="main"><?php echo $mvehicle['price']; ?></td>
+                              <td class="main"><?php echo $mvehicle['type_name']; ?></td>
+                              <td class="main"><?php echo $mvehicle['class_name']; ?></td>
+                              <td class="main">
                                     <form action="." method="get">
                                         <input type="hidden" name="action" value="delete_vehicle">
                                         <input type="hidden" name="product_id"
@@ -118,13 +117,13 @@
                                 foreach ($tvehicles as $tvehicle) : ?>
                             <tr>
                               <td class="product_id_hidden"><?php echo $tvehicle['product_id'];?></td>                                 
-                              <td><?php echo $tvehicle['year']; ?></td>
-                              <td><?php echo $tvehicle['make']; ?></td>
-                              <td><?php echo $tvehicle['model']; ?></td>
-                              <td><?php echo $tvehicle['price']; ?></td>
-                              <td><?php echo $tvehicle['type_name']; ?></td>
-                              <td><?php echo $tvehicle['class_name']; ?></td>
-                              <td>
+                              <td class="main"><?php echo $tvehicle['year']; ?></td>
+                              <td class="main"><?php echo $tvehicle['make']; ?></td>
+                              <td class="main"><?php echo $tvehicle['model']; ?></td>
+                              <td class="main"><?php echo $tvehicle['price']; ?></td>
+                              <td class="main"><?php echo $tvehicle['type_name']; ?></td>
+                              <td class="main"><?php echo $tvehicle['class_name']; ?></td>
+                              <td class="main">
                                     <form action="." method="get">
                                         <input type="hidden" name="action" value="delete_vehicle">
                                         <input type="hidden" name="product_id"
@@ -139,13 +138,13 @@
                                 foreach ($cvehicles as $cvehicle) : ?>
                             <tr>
                               <td class="product_id_hidden"><?php echo $cvehicle['product_id'];?></td>                                 
-                              <td><?php echo $cvehicle['year']; ?></td>
-                              <td><?php echo $cvehicle['make']; ?></td>
-                              <td><?php echo $cvehicle['model']; ?></td>
-                              <td><?php echo $cvehicle['price']; ?></td>
-                              <td><?php echo $cvehicle['type_name']; ?></td>
-                              <td><?php echo $cvehicle['class_name']; ?></td>
-                              <td>
+                              <td class="main"><?php echo $cvehicle['year']; ?></td>
+                              <td class="main"><?php echo $cvehicle['make']; ?></td>
+                              <td class="main"><?php echo $cvehicle['model']; ?></td>
+                              <td class="main"><?php echo $cvehicle['price']; ?></td>
+                              <td class="main"><?php echo $cvehicle['type_name']; ?></td>
+                              <td class="main"><?php echo $cvehicle['class_name']; ?></td>
+                              <td class="main">
                                     <form action="." method="get">
                                         <input type="hidden" name="action" value="delete_vehicle">
                                         <input type="hidden" name="product_id"

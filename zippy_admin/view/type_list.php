@@ -9,8 +9,8 @@
             </tr>        
             <?php foreach ($types as $type) : ?>
             <tr>
-                <td><?php echo $type['type_name']; ?></td>
-                <td>
+                <td class="table"><?php echo $type['type_name']; ?></td>
+                <td class="table">
                     <form action="." method="get">
                         <input type="hidden" name="action" value="delete_type">
                         <input type="hidden" name="type_code"
