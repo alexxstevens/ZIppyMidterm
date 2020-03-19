@@ -27,11 +27,12 @@
         $types = get_types();
         $classes = get_classes();
         //no criteria message
-        $message = no_search();
+        // $message = no_search();
         //get sort variables
         if(isset($_GET['sort'])){
         $sort = $_GET['sort'];};
         //call functions to populate inventory table
+        $dvehicles = default_list();
         $avehicles = display_all();
         $mvehicles = get_inventory_by_make();
         $tvehicles = get_inventory_by_type();

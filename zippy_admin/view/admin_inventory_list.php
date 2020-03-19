@@ -53,7 +53,7 @@
             
 
 <section>
-        <?php if (empty($message)) {?>          
+        
         <div id="table-overflow">
    
                     <table>
@@ -70,6 +70,27 @@
                             </tr>
                         </thead>
                         <tbody>
+
+                           <?php if (isset($dvehicles)) { 
+                                foreach ($dvehicles as $dvehicle) : ?>
+                            <tr>
+                              <td class="product_id_hidden"><?php echo $dvehicle['product_id']; ?></td>
+                              <td class="main"><?php echo $dvehicle['year']; ?></td>
+                              <td class="main"><?php echo $dvehicle['make']; ?></td>
+                              <td class="main"><?php echo $dvehicle['model']; ?></td>
+                              <td class="main"><?php echo $dvehicle['price']; ?></td>
+                              <td class="main"><?php echo $dvehicle['type_name']; ?></td>
+                              <td class="main"><?php echo $dvehicle['class_name']; ?></td>
+                              <td class="main">
+                                    <form action="." method="get">
+                                        <input type="hidden" name="action" value="delete_vehicle">
+                                        <input type="hidden" name="product_id"
+                                            value="<?php echo $dvehicle['product_id']; ?>">
+                                        <input type="submit" value="Remove">
+                                    </form>
+                              </td>
+                            </tr>
+                          <?php endforeach;} ?>
 
                          <?php if (isset($avehicles)) { 
                                 foreach ($avehicles as $avehicle) : ?>
@@ -158,7 +179,7 @@
                     </table>
            
                 </div>
-                   <?php }?>
+                  
                 <div id="links">
                   <h5>Manage Inventory</h5>
                   <p><a href="?action=show_add_form">Click here</a> to add a new vehicles to the inventory.</p>  

@@ -12,15 +12,40 @@
         return $makes;
     }
 
-    function no_search() {
+    // function no_search() {
+    //     global $db;
+    //     global $type_id;
+    //     global $make_id;
+    //     global $class_id; 
+    //     if ($type_id=="" && $make_id == "" && $class_id == "") {
+    //         $message = "Please select search criteria to view inventory.";
+    //         return $message;}
+    // }
+
+///default view
+    function default_list() {
         global $db;
         global $type_id;
         global $make_id;
-        global $class_id; 
-        if ($type_id=="" && $make_id == "" && $class_id == "") {
-            $message = "Please select search criteria to view inventory.";
-            return $message;}
-    }
+        global $class_id;
+        if ($type_id == NULL && $make_id == NULL && $class_id == NULL) { 
+                    $query =  'SELECT 
+                    V.product_id
+                    , V.year
+                    , V.make
+                    , V.model
+                    , V.price 
+                    ,T.type_name
+                    ,C.class_name
+                    FROM vehicles V 
+                    LEFT JOIN types T ON V.type_code = T.type_code 
+                    LEFT JOIN classes C ON V.class_code = C.class_code ORDER BY V.price DESC';
+                    $statement = $db->prepare($query);
+                    $statement->execute();
+                    $dvehicles = $statement->fetchAll();
+                    $statement->closeCursor();
+                    return $dvehicles; 
+    }}
 
     //display all
     function display_all() { 
@@ -33,7 +58,7 @@
             // sort inventory if selected
                 if ($sort == 'price') {
                     $query = 'SELECT 
-                    V.product_id 
+                    V.product_id
                     , V.year
                     , V.make
                     , V.model
@@ -42,7 +67,7 @@
                     ,C.class_name
                     FROM vehicles V 
                     LEFT JOIN types T ON V.type_code = T.type_code 
-                    LEFT JOIN classes C ON V.class_code = C.class_code ORDER BY V.price';
+                    LEFT JOIN classes C ON V.class_code = C.class_code ORDER BY V.price DESC';
                     $statement = $db->prepare($query);
                     $statement->execute();
                     $avehicles = $statement->fetchAll();
@@ -50,7 +75,7 @@
                     return $avehicles;
                 } else if ($sort == 'year') {
                     $query = 'SELECT 
-                    V.product_id 
+                    V.product_id
                     , V.year
                     , V.make
                     , V.model
@@ -65,23 +90,8 @@
                     $avehicles = $statement->fetchAll();
                     $statement->closeCursor();
                     return $avehicles; 
-                } else { $query = 
-                    'SELECT 
-                    V.product_id 
-                    , V.year
-                    , V.make
-                    , V.model
-                    , V.price 
-                    ,T.type_name
-                    ,C.class_name
-                    FROM vehicles V 
-                    LEFT JOIN types T ON V.type_code = T.type_code 
-                    LEFT JOIN classes C ON V.class_code = C.class_code ORDER BY V.product_id';
-                    $statement = $db->prepare($query);
-                    $statement->execute();
-                    $avehicles = $statement->fetchAll();
-                    $statement->closeCursor();
-                    return $avehicles; } } }
+                  }}}
+        
         
     //display inventory by make
     function get_inventory_by_make() {

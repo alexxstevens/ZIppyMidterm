@@ -49,10 +49,10 @@
   </div>
 </section>
             <br>
-            <h3 id="no_search"><?php global $message; echo $message;?></h3>
+      
             
 <section>
-              <?php if (empty($message)) {?>
+         
                 <div id="table-overflow">
                     <table>
                         <thead>
@@ -66,6 +66,19 @@
                             </tr>
                         </thead>
                         <tbody>
+
+                           <?php if (isset($dvehicles)) { 
+                                foreach ($dvehicles as $dvehicle) : ?>
+                            <tr>
+                              <td class="product_id_hidden"><?php echo $dvehicle['product_id']; ?></td>
+                              <td class="main"><?php echo $dvehicle['year']; ?></td>
+                              <td class="main"><?php echo $dvehicle['make']; ?></td>
+                              <td class="main"><?php echo $dvehicle['model']; ?></td>
+                              <td class="main"><?php echo $dvehicle['price']; ?></td>
+                              <td class="main"><?php echo $dvehicle['type_name']; ?></td>
+                              <td class="main"><?php echo $dvehicle['class_name']; ?></td>
+                            </tr>
+                          <?php endforeach;} ?>
 
                          <?php if (isset($avehicles)) { 
                                 foreach ($avehicles as $avehicle) : ?>
@@ -118,7 +131,7 @@
                         </tbody>
                     </table>
                 </div>
-                                <?php }?>
+                                
                  
                                   
         </section>
