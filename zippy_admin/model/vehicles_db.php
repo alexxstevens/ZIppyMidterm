@@ -90,6 +90,22 @@
                     $avehicles = $statement->fetchAll();
                     $statement->closeCursor();
                     return $avehicles; 
+                } else { $query = 'SELECT 
+                    V.product_id
+                    , V.year
+                    , V.make
+                    , V.model
+                    , V.price 
+                    ,T.type_name
+                    ,C.class_name
+                    FROM vehicles V 
+                    LEFT JOIN types T ON V.type_code = T.type_code 
+                    LEFT JOIN classes C ON V.class_code = C.class_code ORDER BY V.price DESC';
+                    $statement = $db->prepare($query);
+                    $statement->execute();
+                    $avehicles = $statement->fetchAll();
+                    $statement->closeCursor();
+                    return $avehicles;
                   }}}
         
     //display inventory by make
