@@ -1,7 +1,8 @@
 <?php
-    $dsn = 'mysql:host=localhost;dbname=zippyusedautos';
-    $username = 'root';
-    $password = 'MesA683103!';
+     $dsn = 'mysql:host=localhost;dbname=zippyusedautos';
+     $username = 'root';
+     $password = 'MesA683103!';
+
 
     try {
         $db = new PDO($dsn, $username, $password);
@@ -12,5 +13,4 @@
         exit();
     }
 ?>
-
 
