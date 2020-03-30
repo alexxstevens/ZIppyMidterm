@@ -65,7 +65,7 @@
                 FROM vehicles V 
                 LEFT JOIN types T ON V.type_code = T.type_code 
                 LEFT JOIN classes C ON V.class_code = C.class_code 
-                WHERE V.class_code = :class_code ORDER BY V.product_id'; 
+                WHERE V.class_code = :class_code ORDER BY V.product_id ORDER BY V.price DESC'; 
                 $statement = $db->prepare($query);
                 $statement->bindValue(':class_code', $class_id);
                 $statement->execute();
