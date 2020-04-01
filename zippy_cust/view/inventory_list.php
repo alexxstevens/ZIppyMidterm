@@ -1,5 +1,6 @@
-<?php include 'header.php';?>
-   
+<?php include 'header.php';
+if(isset($_SESSION['firstName'])) {?>
+   <br><h5 class="register">Welcome, <?php echo  $_SESSION['firstName'];?>!</h5><?php }?>
 <br>
 <section id="dropdowns">
   <div class="dropdown">
